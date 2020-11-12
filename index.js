@@ -32,4 +32,32 @@ const connect = async () => {
 };
 
 connect();
-web3.eth.getAccounts(console.log);
+
+// get all accounts on local blockchain
+const listAccounts = async () => {
+	await web3.eth.getAccounts(console.log);
+	console.log('accounts^^^');
+};
+
+listAccounts();
+
+// get gas price of blockchain
+const getGasPrice = async () => {
+	const gasPrice = await web3.eth.getGasPrice();
+	console.log('gas price:', gasPrice);
+};
+
+getGasPrice();
+
+// get balance of an address at a given block
+const showBalance = async (address) => {
+	// args = address, defaultBlock, callback
+	const balance = await web3.eth.getBalance(
+		'0x6508f1df46187e0e62b146ffb0a22d539dab336d'
+	);
+	console.log(`balance for address ${address}: ${balance}`);
+};
+
+// address passed below is first address in list that comes from listAccounts function
+// returns
+showBalance('0x6508f1DF46187e0e62b146FFB0a22D539Dab336d');
